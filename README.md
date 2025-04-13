@@ -125,6 +125,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 For any queries or suggestions, please contact:
-- Email: your.email@example.com
-- Website: [codingclubgecv.com](https://codingclubgecv.com)
+- Email: codingclub.gecv@gmail.com
+- Website: [codingclubgecv.com(coming soon)](https://codingclubgecv.com)
 - GitHub: [@codingclubgecv](https://github.com/codingclubgecv) 
