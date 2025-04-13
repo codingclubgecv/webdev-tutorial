@@ -17,12 +17,7 @@ A comprehensive web development tutorial platform by Coding Club GEC Vaishali, d
 - **HTML5**: Modern semantic markup
 - **CSS3**: Advanced styling with Flexbox and Grid
 - **JavaScript**: Modern ES6+ features
-- **React**: Component-based UI development
 
-### Backend
-- **Node.js**: JavaScript runtime
-- **Express.js**: Web application framework
-- **MongoDB**: NoSQL database
 
 ## 📚 Learning Path
 
@@ -61,22 +56,13 @@ A comprehensive web development tutorial platform by Coding Club GEC Vaishali, d
 1. **Clone the repository**
    ```bash
    git clone https://github.com/yourusername/webdev-tutorial.git
-   cd webdev-tutorial
+   cd webdev-tutorial-main
    ```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+2. **Install Live Server And Run**
+   
 
-3. **Start the development server**
-   ```bash
-   npm start
-   ```
 
-4. **Open in browser**
-   ```
-   http://localhost:3000
    ```
 
 ## 📱 Responsive Design
@@ -141,4 +127,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For any queries or suggestions, please contact:
 - Email: your.email@example.com
 - Website: [codingclubgecv.com](https://codingclubgecv.com)
-- GitHub: [@yourusername](https://github.com/yourusername) 
+- GitHub: [@codingclubgecv](https://github.com/codingclubgecv) 
