@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions - Animated Presentation</title>
+    <style>
+        /* Previous styles remain the same */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes highlight {
+            0% { background-color: #fff; }
+            50% { background-color: #ffeb3b; }
+            100% { background-color: #fff; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+        }
+
+        .slide {
+            display: none;
+            padding: 40px;
+            min-height: 100vh;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .example {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .analogy {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1557b0;
+        }
+
+        .interactive {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .interactive button {
+            margin: 10px;
+            padding: 8px 16px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Introduction to Functions -->
+    <div class="slide active" id="slide1">
+        <h1 class="title">Functions: Code ka Reuse 🎯</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Functions ko restaurant ke chef ki tarah samjho:</p>
+                <ul>
+                    <li>Input = Ingredients (parameters)</li>
+                    <li>Processing = Cooking (function body)</li>
+                    <li>Output = Dish (return value)</li>
+                </ul>
+            </div>
+            <div class="example">
+                <h3>Real-world Example:</h3>
+                <p>Jab aap Swiggy/Zomato se order karte ho:</p>
+                <ul>
+                    <li>Order function = Takes your order details</li>
+                    <li>Processes order = Kitchen preparation</li>
+                    <li>Returns food = Delivery to your home</li>
+                </ul>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/N8ap4k_1Q-Q" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Function Types -->
+    <div class="slide" id="slide2">
+        <h1 class="title">Different Types of Functions 🎨</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Function types ko different types ki chefs ki tarah samjho:</p>
+                <ul>
+                    <li>Regular Function = Main chef</li>
+                    <li>Arrow Function = Quick service chef</li>
+                    <li>Anonymous Function = Temporary chef</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Regular Function
+function cookDish(ingredients) {
+    return "Delicious " + ingredients + " dish";
+}
+
+// Arrow Function
+const quickCook = (ingredients) => "Fast " + ingredients + " dish";
+
+// Anonymous Function
+const tempChef = function(ingredients) {
+    return "Temporary " + ingredients + " dish";
+};
+            </div>
+            <div class="interactive">
+                <button onclick="alert(cookDish('Pasta'))">Regular Function</button>
+                <button onclick="alert(quickCook('Pizza'))">Arrow Function</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Parameters & Arguments -->
+    <div class="slide" id="slide3">
+        <h1 class="title">Parameters & Arguments 🎁</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Parameters ko recipe ingredients ki tarah samjho:</p>
+                <ul>
+                    <li>Required Parameters = Must-have ingredients</li>
+                    <li>Optional Parameters = Extra ingredients</li>
+                    <li>Default Parameters = Standard ingredients</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Function with parameters
+function orderFood(dish, quantity = 1, specialRequest = "") {
+    return `Order: ${quantity} ${dish} ${specialRequest}`;
+}
+
+// Using the function
+console.log(orderFood("Pizza"));  // Uses default values
+console.log(orderFood("Burger", 2, "with extra cheese"));
+            </div>
+            <div class="interactive">
+                <button onclick="alert(orderFood('Pizza'))">Default Order</button>
+                <button onclick="alert(orderFood('Burger', 2, 'with extra cheese'))">Custom Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Scope & Closures -->
+    <div class="slide" id="slide4">
+        <h1 class="title">Scope & Closures 🔒</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Scope ko restaurant sections ki tarah samjho:</p>
+                <ul>
+                    <li>Global Scope = Main dining area</li>
+                    <li>Local Scope = Kitchen area</li>
+                    <li>Closure = VIP section with kitchen access</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Scope Example
+const restaurant = "Food Palace";  // Global scope
+
+function kitchen() {
+    const secretRecipe = "Special Sauce";  // Local scope
+    
+    return function() {  // Closure
+        return `Making ${secretRecipe} at ${restaurant}`;
+    };
+}
+
+const makeFood = kitchen();
+console.log(makeFood());  // Can access both global and local variables
+            </div>
+            <div class="interactive">
+                <button onclick="alert(makeFood())">Try Closure</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Higher Order Functions -->
+    <div class="slide" id="slide5">
+        <h1 class="title">Higher Order Functions 🚀</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Higher Order Functions ko restaurant manager ki tarah samjho:</p>
+                <ul>
+                    <li>map() = Assigning tasks to chefs</li>
+                    <li>filter() = Selecting specific dishes</li>
+                    <li>reduce() = Calculating total bill</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Higher Order Functions
+const menu = ["Pizza", "Burger", "Pasta"];
+
+// map - Transform each item
+const specialMenu = menu.map(dish => `Special ${dish}`);
+
+// filter - Select specific items
+const vegMenu = menu.filter(dish => dish !== "Burger");
+
+// reduce - Combine all items
+const orderSummary = menu.reduce((summary, dish) => 
+    `${summary}, ${dish}`, "Order contains:"
+);
+            </div>
+            <div class="interactive">
+                <button onclick="alert(specialMenu)">Special Menu</button>
+                <button onclick="alert(vegMenu)">Veg Menu</button>
+                <button onclick="alert(orderSummary)">Order Summary</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevSlide()">Previous</button>
+        <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(`slide${n}`).classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Function examples
+        function cookDish(ingredients) {
+            return "Delicious " + ingredients + " dish";
+        }
+
+        const quickCook = (ingredients) => "Fast " + ingredients + " dish";
+
+        function orderFood(dish, quantity = 1, specialRequest = "") {
+            return `Order: ${quantity} ${dish} ${specialRequest}`;
+        }
+
+        const restaurant = "Food Palace";
+
+        function kitchen() {
+            const secretRecipe = "Special Sauce";
+            return function() {
+                return `Making ${secretRecipe} at ${restaurant}`;
+            };
+        }
+
+        const makeFood = kitchen();
+
+        const menu = ["Pizza", "Burger", "Pasta"];
+        const specialMenu = menu.map(dish => `Special ${dish}`);
+        const vegMenu = menu.filter(dish => dish !== "Burger");
+        const orderSummary = menu.reduce((summary, dish) => 
+            `${summary}, ${dish}`, "Order contains:"
+        );
+    </script>
+</body>
+</html> 

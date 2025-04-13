@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Arrays & Objects - Animated Presentation</title>
+    <style>
+        /* Previous styles remain the same */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes highlight {
+            0% { background-color: #fff; }
+            50% { background-color: #ffeb3b; }
+            100% { background-color: #fff; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+        }
+
+        .slide {
+            display: none;
+            padding: 40px;
+            min-height: 100vh;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .example {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .analogy {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1557b0;
+        }
+
+        .interactive {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .interactive button {
+            margin: 10px;
+            padding: 8px 16px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Introduction to Arrays -->
+    <div class="slide active" id="slide1">
+        <h1 class="title">Arrays: Data ka List 📋</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Arrays ko shopping list ki tarah samjho:</p>
+                <ul>
+                    <li>Index = Item number</li>
+                    <li>Element = Item name</li>
+                    <li>Length = Total items</li>
+                </ul>
+            </div>
+            <div class="example">
+                <h3>Real-world Example:</h3>
+                <p>Amazon cart mein items:</p>
+                <ul>
+                    <li>Items in order = Array elements</li>
+                    <li>Item position = Array index</li>
+                    <li>Total items = Array length</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Shopping cart example
+const cart = ["Laptop", "Phone", "Headphones"];
+console.log(cart[0]);    // Laptop
+console.log(cart.length); // 3
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Array Methods -->
+    <div class="slide" id="slide2">
+        <h1 class="title">Array Methods 🛠️</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Array methods ko shopping cart actions ki tarah samjho:</p>
+                <ul>
+                    <li>push() = Add item</li>
+                    <li>pop() = Remove last item</li>
+                    <li>map() = Transform items</li>
+                    <li>filter() = Select items</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Modern array methods
+const cart = ["Laptop", "Phone"];
+
+// Add item
+cart.push("Tablet");
+
+// Remove last item
+cart.pop();
+
+// Transform items
+const prices = cart.map(item => ({
+    name: item,
+    price: Math.random() * 1000
+}));
+
+// Filter items
+const expensive = prices.filter(item => item.price > 500);
+            </div>
+            <div class="interactive">
+                <button onclick="alert(cart)">Show Cart</button>
+                <button onclick="alert(JSON.stringify(prices))">Show Prices</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Introduction to Objects -->
+    <div class="slide" id="slide3">
+        <h1 class="title">Objects: Data ka Collection 📦</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Objects ko product details ki tarah samjho:</p>
+                <ul>
+                    <li>Property = Product feature</li>
+                    <li>Value = Feature value</li>
+                    <li>Method = Product action</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Product object example
+const laptop = {
+    brand: "Dell",
+    model: "XPS 13",
+    price: 99999,
+    specs: {
+        ram: "16GB",
+        storage: "512GB"
+    },
+    getDiscount() {
+        return this.price * 0.9;
+    }
+};
+            </div>
+            <div class="interactive">
+                <button onclick="alert(laptop.brand)">Show Brand</button>
+                <button onclick="alert(laptop.getDiscount())">Show Discount</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Object Methods -->
+    <div class="slide" id="slide4">
+        <h1 class="title">Object Methods 🔧</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Object methods ko product features ki tarah samjho:</p>
+                <ul>
+                    <li>Object.keys() = Get all features</li>
+                    <li>Object.values() = Get all values</li>
+                    <li>Object.entries() = Get pairs</li>
+                    <li>Object.assign() = Copy features</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Object methods example
+const product = {
+    name: "Smartphone",
+    price: 29999,
+    brand: "Samsung"
+};
+
+// Get all keys
+const features = Object.keys(product);
+
+// Get all values
+const details = Object.values(product);
+
+// Get key-value pairs
+const pairs = Object.entries(product);
+
+// Copy object
+const newProduct = Object.assign({}, product);
+            </div>
+            <div class="interactive">
+                <button onclick="alert(features)">Show Features</button>
+                <button onclick="alert(details)">Show Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Modern Features -->
+    <div class="slide" id="slide5">
+        <h1 class="title">Modern Array & Object Features 🚀</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Modern features ko shopping upgrades ki tarah samjho:</p>
+                <ul>
+                    <li>Destructuring = Unpack items</li>
+                    <li>Spread = Copy items</li>
+                    <li>Rest = Collect items</li>
+                    <li>Optional Chaining = Safe access</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Modern features
+const cart = ["Laptop", "Phone", "Tablet"];
+
+// Destructuring
+const [first, ...rest] = cart;
+
+// Spread operator
+const newCart = [...cart, "Headphones"];
+
+// Object with optional chaining
+const order = {
+    items: cart,
+    customer: {
+        name: "Rahul",
+        address: {
+            city: "Mumbai"
+        }
+    }
+};
+
+// Safe access
+const city = order.customer?.address?.city;
+            </div>
+            <div class="interactive">
+                <button onclick="alert(first)">Show First Item</button>
+                <button onclick="alert(city)">Show City</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevSlide()">Previous</button>
+        <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(`slide${n}`).classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Example data
+        const cart = ["Laptop", "Phone", "Headphones"];
+        const prices = cart.map(item => ({
+            name: item,
+            price: Math.random() * 1000
+        }));
+
+        const laptop = {
+            brand: "Dell",
+            model: "XPS 13",
+            price: 99999,
+            specs: {
+                ram: "16GB",
+                storage: "512GB"
+            },
+            getDiscount() {
+                return this.price * 0.9;
+            }
+        };
+
+        const product = {
+            name: "Smartphone",
+            price: 29999,
+            brand: "Samsung"
+        };
+
+        const features = Object.keys(product);
+        const details = Object.values(product);
+
+        const [first, ...rest] = cart;
+        const newCart = [...cart, "Headphones"];
+
+        const order = {
+            items: cart,
+            customer: {
+                name: "Rahul",
+                address: {
+                    city: "Mumbai"
+                }
+            }
+        };
+
+        const city = order.customer?.address?.city;
+    </script>
+</body>
+</html> 

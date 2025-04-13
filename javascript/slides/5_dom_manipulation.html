@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM Manipulation - Animated Presentation</title>
+    <style>
+        /* Previous styles remain the same */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes highlight {
+            0% { background-color: #fff; }
+            50% { background-color: #ffeb3b; }
+            100% { background-color: #fff; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+        }
+
+        .slide {
+            display: none;
+            padding: 40px;
+            min-height: 100vh;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .example {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .analogy {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1557b0;
+        }
+
+        .interactive {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .interactive button {
+            margin: 10px;
+            padding: 8px 16px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .demo-element {
+            padding: 20px;
+            margin: 10px;
+            background: #e3f2fd;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .demo-element:hover {
+            transform: scale(1.05);
+        }
+
+        .todo-list {
+            margin: 20px 0;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .todo-item.completed {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Introduction to DOM -->
+    <div class="slide active" id="slide1">
+        <h1 class="title">DOM: Webpage ka Structure 🌐</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 DOM ko building ki tarah samjho:</p>
+                <ul>
+                    <li>HTML = Building structure</li>
+                    <li>CSS = Building design</li>
+                    <li>JavaScript = Building manager</li>
+                </ul>
+            </div>
+            <div class="example">
+                <h3>Real-world Example:</h3>
+                <p>Jab aap Amazon pe kuch kharidte ho:</p>
+                <ul>
+                    <li>Add to Cart button = DOM element</li>
+                    <li>Click event = User action</li>
+                    <li>Cart update = DOM manipulation</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// DOM access karna
+const button = document.querySelector('.add-to-cart');
+button.addEventListener('click', () => {
+    // Cart update logic
+});
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: DOM Selection -->
+    <div class="slide" id="slide2">
+        <h1 class="title">DOM Selection Methods 🔍</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 DOM selection ko building mein room dhundhne ki tarah samjho:</p>
+                <ul>
+                    <li>querySelector = Specific room</li>
+                    <li>querySelectorAll = Multiple rooms</li>
+                    <li>getElementById = Room number se</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Different selection methods
+const specificElement = document.querySelector('.class-name');
+const allElements = document.querySelectorAll('.class-name');
+const byId = document.getElementById('element-id');
+
+// Modern selection
+const form = document.forms['login-form'];
+const inputs = form.elements;
+            </div>
+            <div class="interactive">
+                <div class="demo-element" id="demo1">Click me!</div>
+                <button onclick="document.getElementById('demo1').style.color = 'red'">
+                    Change Color
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: DOM Manipulation -->
+    <div class="slide" id="slide3">
+        <h1 class="title">DOM Manipulation 🛠️</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 DOM manipulation ko building modify karne ki tarah samjho:</p>
+                <ul>
+                    <li>createElement = New room banana</li>
+                    <li>appendChild = Room add karna</li>
+                    <li>removeChild = Room hatana</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Creating and manipulating elements
+const newElement = document.createElement('div');
+newElement.textContent = 'New Element';
+newElement.classList.add('highlight');
+
+// Adding to DOM
+document.body.appendChild(newElement);
+
+// Removing from DOM
+newElement.remove();
+            </div>
+            <div class="interactive">
+                <div id="manipulation-demo"></div>
+                <button onclick="addElement()">Add Element</button>
+                <button onclick="removeElement()">Remove Element</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Event Handling -->
+    <div class="slide" id="slide4">
+        <h1 class="title">Event Handling 🎮</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Events ko building mein activities ki tarah samjho:</p>
+                <ul>
+                    <li>click = Button press</li>
+                    <li>submit = Form fill</li>
+                    <li>keydown = Keyboard type</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Event handling
+const button = document.querySelector('button');
+
+// Traditional way
+button.onclick = function() {
+    console.log('Clicked!');
+};
+
+// Modern way
+button.addEventListener('click', (event) => {
+    console.log('Clicked with event:', event);
+});
+            </div>
+            <div class="interactive">
+                <button id="event-demo">Click Me!</button>
+                <p id="event-output">No events yet</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Todo List Example -->
+    <div class="slide" id="slide5">
+        <h1 class="title">Todo List Example 📝</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Todo list ko shopping list ki tarah samjho:</p>
+                <ul>
+                    <li>Add = New item</li>
+                    <li>Complete = Item done</li>
+                    <li>Delete = Remove item</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Todo list functionality
+const todoList = {
+    addTodo(text) {
+        const todo = document.createElement('div');
+        todo.className = 'todo-item';
+        todo.innerHTML = `
+            <input type="checkbox">
+            <span>${text}</span>
+            <button>Delete</button>
+        `;
+        document.querySelector('.todo-list').appendChild(todo);
+    }
+};
+            </div>
+            <div class="interactive">
+                <input type="text" id="todo-input" placeholder="Add new todo">
+                <button onclick="addTodo()">Add Todo</button>
+                <div class="todo-list" id="todo-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevSlide()">Previous</button>
+        <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(`slide${n}`).classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // DOM manipulation examples
+        function addElement() {
+            const demo = document.getElementById('manipulation-demo');
+            const newElement = document.createElement('div');
+            newElement.className = 'demo-element';
+            newElement.textContent = 'New Element';
+            demo.appendChild(newElement);
+        }
+
+        function removeElement() {
+            const demo = document.getElementById('manipulation-demo');
+            if (demo.lastChild) {
+                demo.lastChild.remove();
+            }
+        }
+
+        // Event handling example
+        const eventButton = document.getElementById('event-demo');
+        const eventOutput = document.getElementById('event-output');
+
+        eventButton.addEventListener('click', () => {
+            eventOutput.textContent = 'Button clicked!';
+        });
+
+        // Todo list functionality
+        function addTodo() {
+            const input = document.getElementById('todo-input');
+            const text = input.value.trim();
+            
+            if (text) {
+                const todoList = document.getElementById('todo-list');
+                const todo = document.createElement('div');
+                todo.className = 'todo-item';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                
+                const span = document.createElement('span');
+                span.textContent = text;
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.onclick = function() {
+                    todo.remove();
+                };
+                
+                checkbox.onchange = function() {
+                    todo.classList.toggle('completed');
+                };
+                
+                todo.appendChild(checkbox);
+                todo.appendChild(span);
+                todo.appendChild(deleteBtn);
+                
+                todoList.appendChild(todo);
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern JavaScript Features - Animated Presentation</title>
+    <style>
+        /* Previous styles remain the same */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes highlight {
+            0% { background-color: #fff; }
+            50% { background-color: #ffeb3b; }
+            100% { background-color: #fff; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+        }
+
+        .slide {
+            display: none;
+            padding: 40px;
+            min-height: 100vh;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .example {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .analogy {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1557b0;
+        }
+
+        .interactive {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .interactive button {
+            margin: 10px;
+            padding: 8px 16px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .feature-card h3 {
+            color: #1a73e8;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Introduction to Modern JS -->
+    <div class="slide active" id="slide1">
+        <h1 class="title">Modern JavaScript: Shopping Mall Analogy 🏪</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Modern JavaScript ko shopping mall ki tarah samjho:</p>
+                <ul>
+                    <li>Old Mall = ES5</li>
+                    <li>New Mall = ES6+</li>
+                    <li>Shopping Experience = Developer Experience</li>
+                </ul>
+            </div>
+            <div class="example">
+                <h3>Real-world Example:</h3>
+                <p>Jab aap shopping mall mein jate ho:</p>
+                <ul>
+                    <li>Old Mall = Basic features</li>
+                    <li>New Mall = Modern features</li>
+                    <li>Better Experience = Better Code</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Old JavaScript (ES5)
+var name = "John";
+var age = 30;
+var person = { name: name, age: age };
+
+// Modern JavaScript (ES6+)
+const name = "John";
+const age = 30;
+const person = { name, age };
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Let & Const -->
+    <div class="slide" id="slide2">
+        <h1 class="title">Let & Const: Mall Security System 🔒</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Let & Const ko mall security system ki tarah samjho:</p>
+                <ul>
+                    <li>Let = Temporary Pass</li>
+                    <li>Const = Permanent Pass</li>
+                    <li>Security Rules = Scope Rules</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Let example (Temporary Pass)
+let shoppingCart = [];
+shoppingCart.push("Shirt"); // Allowed
+shoppingCart = ["Pants"]; // Allowed
+
+// Const example (Permanent Pass)
+const storeName = "Fashion Store";
+storeName = "New Store"; // Error: Cannot reassign
+            </div>
+            <div class="interactive">
+                <button onclick="demoLetConst()">Try Let & Const</button>
+                <div id="let-const-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Arrow Functions -->
+    <div class="slide" id="slide3">
+        <h1 class="title">Arrow Functions: Express Checkout 🚀</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Arrow Functions ko express checkout ki tarah samjho:</p>
+                <ul>
+                    <li>Regular Function = Normal Checkout</li>
+                    <li>Arrow Function = Express Checkout</li>
+                    <li>Faster Process = Cleaner Code</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Regular Function (Normal Checkout)
+function calculateTotal(items) {
+    return items.reduce(function(total, item) {
+        return total + item.price;
+    }, 0);
+}
+
+// Arrow Function (Express Checkout)
+const calculateTotal = items => 
+    items.reduce((total, item) => total + item.price, 0);
+            </div>
+            <div class="interactive">
+                <button onclick="demoArrowFunction()">Calculate Total</button>
+                <div id="arrow-function-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Destructuring -->
+    <div class="slide" id="slide4">
+        <h1 class="title">Destructuring: Shopping Bag Unpacking 🛍️</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Destructuring ko shopping bag unpacking ki tarah samjho:</p>
+                <ul>
+                    <li>Shopping Bag = Object/Array</li>
+                    <li>Unpacking = Destructuring</li>
+                    <li>Items = Properties/Elements</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Object Destructuring
+const order = {
+    items: ["Shirt", "Pants"],
+    total: 100,
+    customer: "John"
+};
+
+const { items, total, customer } = order;
+
+// Array Destructuring
+const [firstItem, secondItem] = items;
+            </div>
+            <div class="interactive">
+                <button onclick="demoDestructuring()">Unpack Order</button>
+                <div id="destructuring-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Modern Features -->
+    <div class="slide" id="slide5">
+        <h1 class="title">Modern Features: Mall Upgrades 🆕</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Modern Features ko mall upgrades ki tarah samjho:</p>
+                <ul>
+                    <li>New Stores = New Features</li>
+                    <li>Better Facilities = Better Code</li>
+                    <li>Happy Customers = Happy Developers</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>Template Literals</h3>
+                <div class="code-block">
+const name = "John";
+const greeting = `Hello ${name}!`;
+                </div>
+            </div>
+            <div class="feature-card">
+                <h3>Spread Operator</h3>
+                <div class="code-block">
+const cart = ["Shirt", "Pants"];
+const newCart = [...cart, "Shoes"];
+                </div>
+            </div>
+            <div class="feature-card">
+                <h3>Optional Chaining</h3>
+                <div class="code-block">
+const store = {
+    name: "Fashion Store",
+    address: {
+        city: "Mumbai"
+    }
+};
+const city = store?.address?.city;
+                </div>
+            </div>
+            <div class="interactive">
+                <button onclick="demoModernFeatures()">Try Features</button>
+                <div id="modern-features-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevSlide()">Previous</button>
+        <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(`slide${n}`).classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Let & Const demo
+        function demoLetConst() {
+            const output = document.getElementById('let-const-output');
+            try {
+                let tempPass = "Temporary";
+                tempPass = "Changed"; // Allowed
+                
+                const permPass = "Permanent";
+                permPass = "Changed"; // Error
+                
+                output.innerHTML = `
+                    <p>Let: ${tempPass}</p>
+                    <p>Const: ${permPass}</p>
+                `;
+            } catch (error) {
+                output.innerHTML = `Error: ${error.message}`;
+            }
+        }
+
+        // Arrow Function demo
+        function demoArrowFunction() {
+            const output = document.getElementById('arrow-function-output');
+            const items = [
+                { name: "Shirt", price: 500 },
+                { name: "Pants", price: 1000 }
+            ];
+            
+            const total = items.reduce((sum, item) => sum + item.price, 0);
+            output.innerHTML = `Total: ₹${total}`;
+        }
+
+        // Destructuring demo
+        function demoDestructuring() {
+            const output = document.getElementById('destructuring-output');
+            const order = {
+                items: ["Shirt", "Pants"],
+                total: 1500,
+                customer: "John"
+            };
+            
+            const { items, total, customer } = order;
+            const [firstItem, secondItem] = items;
+            
+            output.innerHTML = `
+                <p>Customer: ${customer}</p>
+                <p>Items: ${firstItem}, ${secondItem}</p>
+                <p>Total: ₹${total}</p>
+            `;
+        }
+
+        // Modern Features demo
+        function demoModernFeatures() {
+            const output = document.getElementById('modern-features-output');
+            
+            // Template Literals
+            const name = "John";
+            const greeting = `Hello ${name}!`;
+            
+            // Spread Operator
+            const cart = ["Shirt", "Pants"];
+            const newCart = [...cart, "Shoes"];
+            
+            // Optional Chaining
+            const store = {
+                name: "Fashion Store",
+                address: {
+                    city: "Mumbai"
+                }
+            };
+            const city = store?.address?.city;
+            
+            output.innerHTML = `
+                <p>Template Literal: ${greeting}</p>
+                <p>Spread Operator: ${newCart.join(", ")}</p>
+                <p>Optional Chaining: ${city}</p>
+            `;
+        }
+    </script>
+</body>
+</html> 

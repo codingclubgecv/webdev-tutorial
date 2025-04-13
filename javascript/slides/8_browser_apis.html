@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser APIs - Animated Presentation</title>
+    <style>
+        /* Previous styles remain the same */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes highlight {
+            0% { background-color: #fff; }
+            50% { background-color: #ffeb3b; }
+            100% { background-color: #fff; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+        }
+
+        .slide {
+            display: none;
+            padding: 40px;
+            min-height: 100vh;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .example {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .analogy {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1557b0;
+        }
+
+        .interactive {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .interactive button {
+            margin: 10px;
+            padding: 8px 16px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .api-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .api-card h3 {
+            color: #1a73e8;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Introduction to Browser APIs -->
+    <div class="slide active" id="slide1">
+        <h1 class="title">Browser APIs: Smart Home Analogy 🏠</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Browser APIs ko smart home ki tarah samjho:</p>
+                <ul>
+                    <li>Smart Devices = Browser APIs</li>
+                    <li>Home Automation = Web Automation</li>
+                    <li>Device Control = API Control</li>
+                </ul>
+            </div>
+            <div class="example">
+                <h3>Real-world Example:</h3>
+                <p>Jab aap smart home use karte ho:</p>
+                <ul>
+                    <li>Lights Control = DOM API</li>
+                    <li>Temperature Control = Storage API</li>
+                    <li>Security System = Security APIs</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Browser APIs Example
+// DOM API
+document.querySelector('.light').style.color = 'red';
+
+// Storage API
+localStorage.setItem('temperature', '25°C');
+
+// Security API
+navigator.geolocation.getCurrentPosition(showPosition);
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Storage APIs -->
+    <div class="slide" id="slide2">
+        <h1 class="title">Storage APIs: Smart Fridge 🧊</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Storage APIs ko smart fridge ki tarah samjho:</p>
+                <ul>
+                    <li>Fridge = Storage</li>
+                    <li>Items = Data</li>
+                    <li>Expiry = Session</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Local Storage (Permanent Storage)
+localStorage.setItem('username', 'John');
+const username = localStorage.getItem('username');
+
+// Session Storage (Temporary Storage)
+sessionStorage.setItem('cart', JSON.stringify(['item1', 'item2']));
+const cart = JSON.parse(sessionStorage.getItem('cart'));
+
+// IndexedDB (Large Storage)
+const db = indexedDB.open('MyDatabase', 1);
+            </div>
+            <div class="interactive">
+                <button onclick="demoStorage()">Try Storage APIs</button>
+                <div id="storage-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Location APIs -->
+    <div class="slide" id="slide3">
+        <h1 class="title">Location APIs: GPS Tracker 🗺️</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Location APIs ko GPS tracker ki tarah samjho:</p>
+                <ul>
+                    <li>GPS Device = Geolocation API</li>
+                    <li>Location Data = Coordinates</li>
+                    <li>Tracking = Position Updates</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Get Current Position
+navigator.geolocation.getCurrentPosition(
+    position => {
+        const { latitude, longitude } = position.coords;
+        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+    },
+    error => console.error(error)
+);
+
+// Watch Position
+const watchId = navigator.geolocation.watchPosition(
+    position => updateMap(position.coords),
+    error => console.error(error)
+);
+            </div>
+            <div class="interactive">
+                <button onclick="demoLocation()">Get Location</button>
+                <div id="location-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Media APIs -->
+    <div class="slide" id="slide4">
+        <h1 class="title">Media APIs: Smart TV 📺</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Media APIs ko smart TV ki tarah samjho:</p>
+                <ul>
+                    <li>TV = Media Devices</li>
+                    <li>Remote = Media Controls</li>
+                    <li>Channels = Media Streams</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Audio API
+const audio = new Audio('music.mp3');
+audio.play();
+
+// Video API
+const video = document.querySelector('video');
+video.play();
+
+// Media Devices
+navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => {
+        video.srcObject = stream;
+    });
+            </div>
+            <div class="interactive">
+                <button onclick="demoMedia()">Try Media APIs</button>
+                <div id="media-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Modern Browser APIs -->
+    <div class="slide" id="slide5">
+        <h1 class="title">Modern Browser APIs: Smart Home Upgrades 🆕</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Modern Browser APIs ko smart home upgrades ki tarah samjho:</p>
+                <ul>
+                    <li>New Devices = New APIs</li>
+                    <li>Better Features = Better APIs</li>
+                    <li>Smart Home = Modern Web</li>
+                </ul>
+            </div>
+            <div class="api-card">
+                <h3>Web Workers</h3>
+                <div class="code-block">
+// Create Worker
+const worker = new Worker('worker.js');
+
+// Send Message
+worker.postMessage('Start processing');
+
+// Receive Message
+worker.onmessage = e => console.log(e.data);
+                </div>
+            </div>
+            <div class="api-card">
+                <h3>WebSocket</h3>
+                <div class="code-block">
+// Create Connection
+const socket = new WebSocket('ws://example.com');
+
+// Send Message
+socket.send('Hello Server');
+
+// Receive Message
+socket.onmessage = e => console.log(e.data);
+                </div>
+            </div>
+            <div class="api-card">
+                <h3>Service Workers</h3>
+                <div class="code-block">
+// Register Service Worker
+navigator.serviceWorker.register('sw.js');
+
+// Handle Install
+self.addEventListener('install', event => {
+    // Cache resources
+});
+                </div>
+            </div>
+            <div class="interactive">
+                <button onclick="demoModernAPIs()">Try Modern APIs</button>
+                <div id="modern-apis-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevSlide()">Previous</button>
+        <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(`slide${n}`).classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Storage API demo
+        function demoStorage() {
+            const output = document.getElementById('storage-output');
+            try {
+                // Local Storage
+                localStorage.setItem('test', 'Hello Local Storage');
+                const localValue = localStorage.getItem('test');
+                
+                // Session Storage
+                sessionStorage.setItem('test', 'Hello Session Storage');
+                const sessionValue = sessionStorage.getItem('test');
+                
+                output.innerHTML = `
+                    <p>Local Storage: ${localValue}</p>
+                    <p>Session Storage: ${sessionValue}</p>
+                `;
+            } catch (error) {
+                output.innerHTML = `Error: ${error.message}`;
+            }
+        }
+
+        // Location API demo
+        function demoLocation() {
+            const output = document.getElementById('location-output');
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        const { latitude, longitude } = position.coords;
+                        output.innerHTML = `
+                            <p>Latitude: ${latitude}</p>
+                            <p>Longitude: ${longitude}</p>
+                        `;
+                    },
+                    error => {
+                        output.innerHTML = `Error: ${error.message}`;
+                    }
+                );
+            } else {
+                output.innerHTML = 'Geolocation is not supported';
+            }
+        }
+
+        // Media API demo
+        function demoMedia() {
+            const output = document.getElementById('media-output');
+            if ('mediaDevices' in navigator) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(stream => {
+                        output.innerHTML = 'Camera access granted';
+                    })
+                    .catch(error => {
+                        output.innerHTML = `Error: ${error.message}`;
+                    });
+            } else {
+                output.innerHTML = 'Media Devices not supported';
+            }
+        }
+
+        // Modern APIs demo
+        function demoModernAPIs() {
+            const output = document.getElementById('modern-apis-output');
+            
+            // Web Workers
+            if (typeof Worker !== 'undefined') {
+                const worker = new Worker(URL.createObjectURL(
+                    new Blob(['self.onmessage = e => self.postMessage(e.data);'])
+                ));
+                
+                worker.onmessage = e => {
+                    output.innerHTML += `<p>Worker: ${e.data}</p>`;
+                };
+                
+                worker.postMessage('Hello from main thread');
+            }
+            
+            // WebSocket
+            if ('WebSocket' in window) {
+                output.innerHTML += '<p>WebSocket is supported</p>';
+            }
+            
+            // Service Worker
+            if ('serviceWorker' in navigator) {
+                output.innerHTML += '<p>Service Worker is supported</p>';
+            }
+        }
+    </script>
+</body>
+</html> 

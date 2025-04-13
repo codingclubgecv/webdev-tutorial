@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchronous JavaScript - Animated Presentation</title>
+    <style>
+        /* Previous styles remain the same */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes highlight {
+            0% { background-color: #fff; }
+            50% { background-color: #ffeb3b; }
+            100% { background-color: #fff; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+        }
+
+        .slide {
+            display: none;
+            padding: 40px;
+            min-height: 100vh;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .example {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .analogy {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1557b0;
+        }
+
+        .interactive {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .interactive button {
+            margin: 10px;
+            padding: 8px 16px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #1a73e8;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .promise-chain {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .promise-step {
+            padding: 10px;
+            background: #e3f2fd;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .promise-step.completed {
+            background: #c8e6c9;
+        }
+
+        .promise-step.failed {
+            background: #ffcdd2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Introduction to Async JS -->
+    <div class="slide active" id="slide1">
+        <h1 class="title">Async JavaScript: Restaurant Analogy 🍽️</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Async JavaScript ko restaurant ki tarah samjho:</p>
+                <ul>
+                    <li>Waiter = JavaScript Engine</li>
+                    <li>Kitchen = Background Tasks</li>
+                    <li>Customers = User Actions</li>
+                </ul>
+            </div>
+            <div class="example">
+                <h3>Real-world Example:</h3>
+                <p>Jab aap restaurant mein order karte ho:</p>
+                <ul>
+                    <li>Order dena = Async Task</li>
+                    <li>Khana ban raha hai = Background Process</li>
+                    <li>Table pe baithna = Main Thread</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Synchronous vs Asynchronous
+console.log('Order dena'); // Synchronous
+setTimeout(() => {
+    console.log('Khana serve karna'); // Asynchronous
+}, 2000);
+console.log('Table pe baithna'); // Synchronous
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Callbacks -->
+    <div class="slide" id="slide2">
+        <h1 class="title">Callbacks: Restaurant Order System 📝</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Callbacks ko restaurant order system ki tarah samjho:</p>
+                <ul>
+                    <li>Order dena = Function call</li>
+                    <li>Khana ready hona = Task completion</li>
+                    <li>Serve karna = Callback execution</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Callback example
+function orderFood(food, callback) {
+    console.log(`${food} order diya`);
+    setTimeout(() => {
+        callback(`${food} ready hai`);
+    }, 2000);
+}
+
+orderFood('Pizza', (message) => {
+    console.log(message);
+});
+            </div>
+            <div class="interactive">
+                <button onclick="demoCallback()">Order Food</button>
+                <div id="callback-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Promises -->
+    <div class="slide" id="slide3">
+        <h1 class="title">Promises: Food Delivery System 🚚</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Promises ko food delivery system ki tarah samjho:</p>
+                <ul>
+                    <li>Order place karna = Promise creation</li>
+                    <li>Delivery tracking = Promise states</li>
+                    <li>Delivery complete = Promise resolution</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Promise example
+function orderFood(food) {
+    return new Promise((resolve, reject) => {
+        console.log(`${food} order diya`);
+        setTimeout(() => {
+            if (Math.random() > 0.1) {
+                resolve(`${food} deliver ho gaya`);
+            } else {
+                reject('Delivery failed');
+            }
+        }, 2000);
+    });
+}
+
+orderFood('Pizza')
+    .then(message => console.log(message))
+    .catch(error => console.error(error));
+            </div>
+            <div class="interactive">
+                <button onclick="demoPromise()">Order Food</button>
+                <div class="promise-chain" id="promise-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Async/Await -->
+    <div class="slide" id="slide4">
+        <h1 class="title">Async/Await: Modern Restaurant 🏪</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Async/Await ko modern restaurant ki tarah samjho:</p>
+                <ul>
+                    <li>Waiter wait karna = Await</li>
+                    <li>Multiple orders = Async functions</li>
+                    <li>Error handling = Try/Catch</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Async/Await example
+async function orderMeal() {
+    try {
+        const pizza = await orderFood('Pizza');
+        const burger = await orderFood('Burger');
+        console.log(`${pizza} and ${burger}`);
+    } catch (error) {
+        console.error('Order failed:', error);
+    }
+}
+
+orderMeal();
+            </div>
+            <div class="interactive">
+                <button onclick="demoAsyncAwait()">Order Meal</button>
+                <div id="async-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Event Loop -->
+    <div class="slide" id="slide5">
+        <h1 class="title">Event Loop: Restaurant Management 🔄</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Event Loop ko restaurant management ki tarah samjho:</p>
+                <ul>
+                    <li>Main counter = Call Stack</li>
+                    <li>Waiting area = Callback Queue</li>
+                    <li>Manager = Event Loop</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Event Loop example
+console.log('Customer aaya'); // Call Stack
+
+setTimeout(() => {
+    console.log('Order process hua'); // Callback Queue
+}, 0);
+
+console.log('Next customer ko bulaya'); // Call Stack
+            </div>
+            <div class="interactive">
+                <button onclick="demoEventLoop()">Start Process</button>
+                <div id="event-loop-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevSlide()">Previous</button>
+        <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(`slide${n}`).classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Callback demo
+        function demoCallback() {
+            const output = document.getElementById('callback-output');
+            output.innerHTML = '<div class="loading"></div> Ordering...';
+            
+            setTimeout(() => {
+                output.innerHTML = 'Food ready hai! 🍕';
+            }, 2000);
+        }
+
+        // Promise demo
+        function demoPromise() {
+            const output = document.getElementById('promise-output');
+            output.innerHTML = '';
+            
+            function addStep(text, status = '') {
+                const step = document.createElement('div');
+                step.className = `promise-step ${status}`;
+                step.textContent = text;
+                output.appendChild(step);
+            }
+
+            addStep('Order placing...');
+            
+            new Promise((resolve) => {
+                setTimeout(() => resolve('Order placed'), 1000);
+            })
+            .then(result => {
+                addStep(result, 'completed');
+                return new Promise(resolve => {
+                    setTimeout(() => resolve('Cooking...'), 1000);
+                });
+            })
+            .then(result => {
+                addStep(result, 'completed');
+                return new Promise(resolve => {
+                    setTimeout(() => resolve('Food ready!'), 1000);
+                });
+            })
+            .then(result => {
+                addStep(result, 'completed');
+            })
+            .catch(error => {
+                addStep(error, 'failed');
+            });
+        }
+
+        // Async/Await demo
+        async function demoAsyncAwait() {
+            const output = document.getElementById('async-output');
+            output.innerHTML = '<div class="loading"></div> Processing...';
+            
+            try {
+                const result1 = await new Promise(resolve => 
+                    setTimeout(() => resolve('Pizza ready'), 2000)
+                );
+                const result2 = await new Promise(resolve => 
+                    setTimeout(() => resolve('Burger ready'), 2000)
+                );
+                
+                output.innerHTML = `${result1} and ${result2} 🍽️`;
+            } catch (error) {
+                output.innerHTML = `Error: ${error}`;
+            }
+        }
+
+        // Event Loop demo
+        function demoEventLoop() {
+            const output = document.getElementById('event-loop-output');
+            output.innerHTML = '';
+            
+            function log(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                output.appendChild(div);
+            }
+
+            log('Customer aaya');
+            
+            setTimeout(() => {
+                log('Order process hua');
+            }, 0);
+            
+            log('Next customer ko bulaya');
+            
+            // Microtask example
+            Promise.resolve().then(() => {
+                log('Microtask processed');
+            });
+        }
+    </script>
+</body>
+</html> 

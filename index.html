@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Tutorial | Coding Club GEC Vaishali</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Fira Code Font for Code Blocks -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Prism.js Theme -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-code"></i> <span class="desktop-text">Coding Club GEC Vaishali</span>
+                <span class="mobile-text">Coding Club GECV</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+                <i class="fas fa-times close-icon"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tech-stack">Tech Stack</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="darkModeToggle" class="btn btn-link nav-link">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1>
+                        <span>Web</span>
+                        <span>Development</span>
+                        <span>Tutorial</span>
+                    </h1>
+                    <p class="lead">Master modern web development with hands-on tutorials and real-world projects by Coding Club GEC Vaishali</p>
+                    <div class="hero-buttons">
+                        <a href="#tech-stack" class="btn btn-primary btn-lg scroll-to-section">
+                            <i class="fas fa-graduation-cap"></i> Start Learning
+                        </a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg scroll-to-section">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Editor Section -->
+    <!-- <section id="code-editor" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Code Editor</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="code-editor">
+                        <div class="editor-tabs">
+                            <button class="tab-btn active" data-tab="html">HTML</button>
+                            <button class="tab-btn" data-tab="css">CSS</button>
+                            <button class="tab-btn" data-tab="js">JavaScript</button>
+                        </div>
+                        <div class="editor-content">
+                            <div id="html-tab" class="tab-content active">
+                                <pre><code class="language-html" contenteditable="true">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My Web Page&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+    &lt;p&gt;This is a sample paragraph.&lt;/p&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            </div>
+                            <div id="css-tab" class="tab-content">
+                                <pre><code class="language-css" contenteditable="true">/* Write your CSS code here */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+p {
+    color: #666;
+    line-height: 1.6;
+}</code></pre>
+                            </div>
+                            <div id="js-tab" class="tab-content">
+                                <pre><code class="language-javascript" contenteditable="true">// Write your JavaScript code here
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Page loaded!');
+    
+    // Add your JavaScript code here
+    const heading = document.querySelector('h1');
+    heading.addEventListener('click', function() {
+        this.style.color = 'blue';
+    });
+});</code></pre>
+                            </div>
+                        </div>
+                        <div class="editor-actions">
+                            <button id="runCode" class="btn btn-primary">
+                                <i class="fas fa-play"></i> Run Code
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="preview-container">
+                        <h4>Live Preview</h4>
+                        <iframe id="previewFrame" class="preview-frame"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Tech Stack</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <h3>HTML & CSS</h3>
+                        <ul>
+                            <li><a href="html/slides/1_basics.html">HTML Basics</a></li>
+                            <li><a href="html/slides/2_forms.html">Forms & Inputs</a></li>
+                            <li><a href="html/slides/3_semantic.html">Semantic HTML</a></li>
+                            <li><a href="css/slides/1_basics.html">CSS Basics</a></li>
+                            <li><a href="css/slides/2_layout.html">Layout & Flexbox</a></li>
+                            <li><a href="css/slides/3_responsive.html">Responsive Design</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <h3>JavaScript</h3>
+                        <ul>
+                            <li><a href="javascript/slides/1_basics.html">JavaScript Basics</a></li>
+                            <li><a href="javascript/slides/2_functions.html">Functions & Scope</a></li>
+                            <li><a href="javascript/slides/3_arrays_objects.html">Arrays & Objects</a></li>
+                            <li><a href="javascript/slides/4_strings.html">Strings & Methods</a></li>
+                            <li><a href="javascript/slides/5_dom.html">DOM Manipulation</a></li>
+                            <li><a href="javascript/slides/6_async.html">Async Programming</a></li>
+                            <li><a href="javascript/slides/7_modern.html">Modern JavaScript</a></li>
+                            <li><a href="javascript/slides/8_browser_apis.html">Browser APIs</a></li>
+                            <li><a href="javascript/slides/9_error_handling.html">Error Handling</a></li>
+                            <li><a href="javascript/slides/10_security.html">Security Best Practices</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <h3>React</h3>
+                        <ul>
+                            <li><a href="react/slides/1_basics.html">React Basics</a></li>
+                            <li><a href="react/slides/2_components.html">Components & Props</a></li>
+                            <li><a href="react/slides/3_state.html">State & Lifecycle</a></li>
+                            <li><a href="react/slides/4_hooks.html">Hooks & Context</a></li>
+                            <li><a href="react/slides/5_routing.html">Routing & Navigation</a></li>
+                            <li><a href="react/slides/6_redux.html">State Management</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div></div>
+
+    <!-- Backend Technologies Section -->
+    <section id="backend" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Backend Technologies</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <h3>Node.js</h3>
+                        <ul>
+                            <li><a href="nodejs/slides/1_basics.html">Node.js Basics</a></li>
+                            <li><a href="nodejs/slides/2_modules.html">Modules & NPM</a></li>
+                            <li><a href="nodejs/slides/3_async.html">Async Programming</a></li>
+                            <li><a href="nodejs/slides/4_file.html">File System</a></li>
+                            <li><a href="nodejs/slides/5_http.html">HTTP Server</a></li>
+                            <li><a href="nodejs/slides/6_express.html">Express.js</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>Express.js</h3>
+                        <ul>
+                            <li><a href="express/slides/1_basics.html">Express Basics</a></li>
+                            <li><a href="express/slides/2_routing.html">Routing & Middleware</a></li>
+                            <li><a href="express/slides/3_authentication.html">Authentication</a></li>
+                            <li><a href="express/slides/4_database.html">Database Integration</a></li>
+                            <li><a href="express/slides/5_api.html">RESTful APIs</a></li>
+                            <li><a href="express/slides/6_security.html">Security Best Practices</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tech-card">
+                        <div class="tech-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>MongoDB</h3>
+                        <ul>
+                            <li><a href="mongodb/slides/1_basics.html">MongoDB Basics</a></li>
+                            <li><a href="mongodb/slides/2_crud.html">CRUD Operations</a></li>
+                            <li><a href="mongodb/slides/3_schema.html">Schema Design</a></li>
+                            <li><a href="mongodb/slides/4_aggregation.html">Aggregation</a></li>
+                            <li><a href="mongodb/slides/5_indexes.html">Indexes & Performance</a></li>
+                            <li><a href="mongodb/slides/6_atlas.html">MongoDB Atlas</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">About the Instructor</h2>
+            <div class="row">
+                <div class="col-lg-4 mx-auto">
+                    <div class="instructor-profile">
+                        <img src="images/instructor.jpg" alt="Rahul Raj" class="img-fluid">
+                        <h3>Rahul Raj</h3>
+                        <p class="text-muted">Full Stack Developer & Instructor</p>
+                        <div class="social-links">
+                            <a href="#" data-bs-toggle="tooltip" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" data-bs-toggle="tooltip" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" data-bs-toggle="tooltip" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" data-bs-toggle="tooltip" title="Portfolio"><i class="fas fa-globe"></i></a>
+                        </div>
+                        <p class="mt-3">Passionate about teaching and building web applications. Experienced in modern web technologies and best practices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Coding Club GEC Vaishali</h5>
+                    <p>Empowering students with modern web development skills.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#tech-stack">Tech Stack</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 Coding Club GEC Vaishali. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Prism.js for Syntax Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html> 

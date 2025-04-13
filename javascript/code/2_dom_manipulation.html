@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List - DOM Manipulation Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .todo-container {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .todo-input {
+            width: 70%;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        .add-btn {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .todo-list {
+            list-style: none;
+            padding: 0;
+        }
+        .todo-item {
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delete-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="todo-container">
+        <h2>📝 Todo List</h2>
+        <div class="input-container">
+            <input type="text" class="todo-input" placeholder="Add a new task...">
+            <button class="add-btn">Add Task</button>
+        </div>
+        <ul class="todo-list"></ul>
+    </div>
+
+    <script>
+        // DOM Elements
+        const todoInput = document.querySelector('.todo-input');
+        const addButton = document.querySelector('.add-btn');
+        const todoList = document.querySelector('.todo-list');
+
+        // Event Listeners
+        addButton.addEventListener('click', addTodo);
+        todoInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addTodo();
+        });
+
+        // Functions
+        function addTodo() {
+            const taskText = todoInput.value.trim();
+            if (taskText) {
+                // Create new todo item
+                const todoItem = document.createElement('li');
+                todoItem.className = 'todo-item';
+                
+                // Add task text
+                const taskSpan = document.createElement('span');
+                taskSpan.textContent = taskText;
+                
+                // Add delete button
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.onclick = () => todoItem.remove();
+                
+                // Assemble todo item
+                todoItem.appendChild(taskSpan);
+                todoItem.appendChild(deleteBtn);
+                
+                // Add to list
+                todoList.appendChild(todoItem);
+                
+                // Clear input
+                todoInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html> 

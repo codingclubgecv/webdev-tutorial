@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Basics - Animated Presentation</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes highlight {
+            0% { background-color: #fff; }
+            50% { background-color: #ffeb3b; }
+            100% { background-color: #fff; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+        }
+
+        .slide {
+            display: none;
+            padding: 40px;
+            min-height: 100vh;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .example {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .analogy {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1557b0;
+        }
+
+        .interactive {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .interactive button {
+            margin: 10px;
+            padding: 8px 16px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Introduction -->
+    <div class="slide active" id="slide1">
+        <h1 class="title">JavaScript ka kya hai? 🤔</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 JavaScript ko restaurant waiter ki tarah samjho:</p>
+                <ul>
+                    <li>HTML = Menu (structure)</li>
+                    <li>CSS = Restaurant decor (styling)</li>
+                    <li>JavaScript = Waiter (interactivity)</li>
+                </ul>
+            </div>
+            <div class="example">
+                <h3>Real-world Example:</h3>
+                <p>Jab aap Amazon pe kuch kharidte ho:</p>
+                <ul>
+                    <li>Add to Cart button = JavaScript</li>
+                    <li>Price calculation = JavaScript</li>
+                    <li>Search functionality = JavaScript</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Variables -->
+    <div class="slide" id="slide2">
+        <h1 class="title">Variables: Data ka Storage 🗄️</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Variables ko shopping bags ki tarah samjho:</p>
+                <ul>
+                    <li><code>let</code> = Reusable bag par ek hi mall me(change kar sakte ho)</li>
+                    <li><code>const</code> = Fixed price item (change nahi kar sakte)</li>
+                    <li><code>var</code> = Purana style bag reusable in different malls(avoid karna better)</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Variables declare karna
+let shoppingBag = ['apples', 'bananas'];
+shoppingBag.push('oranges'); // ✅ Allowed
+
+const fixedPrice = 100;
+// fixedPrice = 200; // ❌ Not allowed
+
+var oldStyle = "Avoid this"; // ❌ Old way
+            </div>
+            <div class="interactive">
+                <button onclick="alert(shoppingBag)">Show Shopping Bag</button>
+                <button onclick="alert(fixedPrice)">Show Fixed Price</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Data Types -->
+    <div class="slide" id="slide3">
+        <h1 class="title">Data Types 📦</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Data types ko different types ki shopping items ki tarah samjho:</p>
+                <ul>
+                    <li>String = Text (like product name)</li>
+                    <li>Number = Price</li>
+                    <li>Boolean = In stock/Out of stock</li>
+                    <li>Array = Shopping list</li>
+                    <li>Object = Product details</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Different data types
+const product = {
+    name: "Laptop",          // String
+    price: 50000,            // Number
+    inStock: true,           // Boolean
+    features: [              // Array
+        "8GB RAM",
+        "256GB SSD"
+    ],
+    specs: {                 // Object
+        brand: "Dell",
+        model: "XPS 13"
+    }
+};
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Operators -->
+    <div class="slide" id="slide4">
+        <h1 class="title">Operators 🧮</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Operators ko shopping calculations ki tarah samjho:</p>
+                <ul>
+                    <li>+ = Add items to cart</li>
+                    <li>- = Remove items</li>
+                    <li>* = Calculate total</li>
+                    <li>/ = Split bill</li>
+                    <li>=== = Compare prices</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Arithmetic Operators
+let price = 100;
+let quantity = 2;
+let total = price * quantity;  // 200
+
+// Comparison Operators
+let budget = 500;
+let canAfford = total <= budget;  // true
+
+// Logical Operators
+let hasDiscount = true;
+let isMember = true;
+let applyDiscount = hasDiscount && isMember;  // true
+            </div>
+            <div class="interactive">
+                <button onclick="alert(2 + 2)">2 + 2 = ?</button>
+                <button onclick="alert(10 > 5)">10 > 5?</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Control Flow -->
+    <div class="slide" id="slide5">
+        <h1 class="title">Control Flow 🚦</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Control flow ko shopping decisions ki tarah samjho:</p>
+                <ul>
+                    <li>if-else = Discount check</li>
+                    <li>switch = Payment method</li>
+                    <li>loops = Multiple items</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// if-else example
+let budget = 1000;
+let cartTotal = 1200;
+
+if (cartTotal <= budget) {
+    console.log("You can buy!");
+} else {
+    console.log("Over budget!");
+}
+
+// switch example
+let paymentMethod = "credit";
+switch(paymentMethod) {
+    case "credit":
+        console.log("Processing credit card...");
+        break;
+    case "debit":
+        console.log("Processing debit card...");
+        break;
+    default:
+        console.log("Invalid payment method");
+}
+
+// for loop example
+const items = ["shirt", "pants", "shoes"];
+for (let i = 0; i < items.length; i++) {
+    console.log(`Adding ${items[i]} to cart`);
+}
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevSlide()">Previous</button>
+        <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(`slide${n}`).classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html> 

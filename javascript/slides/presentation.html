@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Session 1 - Animated Presentation</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes highlight {
+            0% { background-color: #fff; }
+            50% { background-color: #ffeb3b; }
+            100% { background-color: #fff; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+        }
+
+        .slide {
+            display: none;
+            padding: 40px;
+            min-height: 100vh;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .example {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .highlight {
+            animation: highlight 2s ease-in-out;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1557b0;
+        }
+
+        .analogy {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Introduction -->
+    <div class="slide active" id="slide1">
+        <h1 class="title">JavaScript ka kya hai? 🤔</h1>
+        <div class="content">
+            <p>JavaScript ek programming language hai jo web pages ko interactive banati hai!</p>
+            <div class="analogy">
+                <p>💡 Think of JavaScript as a restaurant waiter:</p>
+                <ul>
+                    <li>HTML = Menu (structure)</li>
+                    <li>CSS = Restaurant decor (styling)</li>
+                    <li>JavaScript = Waiter (interactivity)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Variables -->
+    <div class="slide" id="slide2">
+        <h1 class="title">Variables: Data ka Storage 🗄️</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Variables ko shopping bags ki tarah samjho:</p>
+                <ul>
+                    <li><code>let</code> = Reusable bag (change kar sakte ho)</li>
+                    <li><code>const</code> = Fixed price item (change nahi kar sakte)</li>
+                </ul>
+            </div>
+            <div class="code-block">
+let shoppingBag = ['apples', 'bananas'];
+shoppingBag.push('oranges'); // ✅ Allowed
+
+const fixedPrice = 100;
+// fixedPrice = 200; // ❌ Not allowed
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Modern Array Methods -->
+    <div class="slide" id="slide3">
+        <h1 class="title">Modern Array Methods 🛒</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Array methods ko shopping operations ki tarah samjho:</p>
+                <ul>
+                    <li><code>map()</code> = Har item pe kuch operation (like adding tax)</li>
+                    <li><code>filter()</code> = Specific items dhundna (like budget items)</li>
+                    <li><code>reduce()</code> = Total calculate karna (like bill amount)</li>
+                </ul>
+            </div>
+            <div class="code-block">
+const products = [
+    { name: 'Laptop', price: 50000 },
+    { name: 'Phone', price: 25000 }
+];
+
+// Adding tax to each product
+const withTax = products.map(product => ({
+    ...product,
+    priceWithTax: product.price * 1.18
+}));
+
+// Finding budget items
+const budgetItems = products.filter(p => p.price < 30000);
+
+// Calculating total
+const total = products.reduce((sum, p) => sum + p.price, 0);
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: DOM Manipulation -->
+    <div class="slide" id="slide4">
+        <h1 class="title">DOM Manipulation 🎮</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 DOM ko restaurant menu ki tarah samjho:</p>
+                <ul>
+                    <li>Menu items = HTML elements</li>
+                    <li>Changing menu = DOM manipulation</li>
+                    <li>Customer interaction = Event handling</li>
+                </ul>
+            </div>
+            <div class="example">
+                <h3>Todo List Example:</h3>
+                <div class="code-block">
+// Selecting elements
+const input = document.querySelector('.todo-input');
+const button = document.querySelector('.add-btn');
+
+// Adding event listener
+button.addEventListener('click', () => {
+    const task = input.value;
+    // Add task to list
+});
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Modern Features -->
+    <div class="slide" id="slide5">
+        <h1 class="title">Modern JavaScript Features 🚀</h1>
+        <div class="content">
+            <div class="analogy">
+                <p>💡 Modern features ko social media ki tarah samjho:</p>
+                <ul>
+                    <li>Template Literals = Post formatting</li>
+                    <li>Destructuring = Profile information extract karna</li>
+                    <li>Spread Operator = New posts add karna</li>
+                </ul>
+            </div>
+            <div class="code-block">
+// Template Literals
+const post = `
+    🎉 New Post! 🎉
+    By: ${user.name}
+    Content: ${content}
+`;
+
+// Destructuring
+const { name, age } = user;
+
+// Spread Operator
+const newFeed = [...oldPosts, newPost];
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevSlide()">Previous</button>
+        <button class="btn" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(`slide${n}`).classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html> 

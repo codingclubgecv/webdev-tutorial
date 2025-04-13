@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Best Practices</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+        }
+        .slide {
+            display: none;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        .slide.active {
+            display: block;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .analogy {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .code {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+        .button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background: #45a049;
+        }
+        .output {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            min-height: 50px;
+        }
+        .navigation {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .nav-button:hover {
+            background: #0b7dda;
+        }
+        .security-tip {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide active" id="slide1">
+        <h1>Introduction to Web Security</h1>
+        <div class="analogy">
+            <h2>Real-world Analogy: Home Security</h2>
+            <p>Just like securing a home with locks, alarms, and surveillance, web applications need multiple layers of security.</p>
+        </div>
+        <div class="code">
+            // Insecure
+            const password = '123456';
+            
+            // Secure
+            const hashedPassword = await bcrypt.hash(password, 10);
+        </div>
+        <div class="security-tip">
+            Always hash passwords before storing them in the database.
+        </div>
+        <button class="button" onclick="demoPassword()">Hash Password</button>
+        <div class="output" id="passwordOutput"></div>
+    </div>
+
+    <div class="slide" id="slide2">
+        <h1>XSS Prevention</h1>
+        <div class="analogy">
+            <h2>Real-world Analogy: Package Inspection</h2>
+            <p>Like inspecting packages for dangerous contents, we need to sanitize user input to prevent XSS attacks.</p>
+        </div>
+        <div class="code">
+            // Vulnerable
+            document.getElementById('output').innerHTML = userInput;
+            
+            // Secure
+            document.getElementById('output').textContent = userInput;
+        </div>
+        <div class="security-tip">
+            Always escape or sanitize user input before displaying it.
+        </div>
+        <button class="button" onclick="demoXSS()">Test XSS Prevention</button>
+        <div class="output" id="xssOutput"></div>
+    </div>
+
+    <div class="slide" id="slide3">
+        <h1>CSRF Protection</h1>
+        <div class="analogy">
+            <h2>Real-world Analogy: Signature Verification</h2>
+            <p>Like verifying signatures on important documents, we need to verify the authenticity of requests.</p>
+        </div>
+        <div class="code">
+            // CSRF Token
+            const csrfToken = generateToken();
+            
+            // Add to form
+            <input type="hidden" name="csrf_token" value="${csrfToken}">
+            
+            // Verify token
+            if (request.csrf_token !== session.csrf_token) {
+                throw new Error('Invalid CSRF token');
+            }
+        </div>
+        <div class="security-tip">
+            Always use CSRF tokens for state-changing requests.
+        </div>
+        <button class="button" onclick="demoCSRF()">Generate CSRF Token</button>
+        <div class="output" id="csrfOutput"></div>
+    </div>
+
+    <div class="slide" id="slide4">
+        <h1>Input Validation</h1>
+        <div class="analogy">
+            <h2>Real-world Analogy: Airport Security</h2>
+            <p>Like airport security checking for prohibited items, we need to validate all user input.</p>
+        </div>
+        <div class="code">
+            // Basic validation
+            function validateInput(input) {
+                if (typeof input !== 'string') {
+                    throw new Error('Invalid input type');
+                }
+                if (input.length > 100) {
+                    throw new Error('Input too long');
+                }
+                return sanitize(input);
+            }
+        </div>
+        <div class="security-tip">
+            Validate and sanitize all user input before processing.
+        </div>
+        <button class="button" onclick="demoValidation()">Validate Input</button>
+        <div class="output" id="validationOutput"></div>
+    </div>
+
+    <div class="slide" id="slide5">
+        <h1>Secure Communication</h1>
+        <div class="analogy">
+            <h2>Real-world Analogy: Encrypted Phone Calls</h2>
+            <p>Like using encrypted phone lines for sensitive conversations, we need to secure all communications.</p>
+        </div>
+        <div class="code">
+            // HTTPS Configuration
+            const https = require('https');
+            const fs = require('fs');
+            
+            const options = {
+                key: fs.readFileSync('key.pem'),
+                cert: fs.readFileSync('cert.pem')
+            };
+            
+            https.createServer(options, app).listen(443);
+        </div>
+        <div class="security-tip">
+            Always use HTTPS for secure communication.
+        </div>
+        <button class="button" onclick="demoHTTPS()">Check HTTPS</button>
+        <div class="output" id="httpsOutput"></div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-button" onclick="prevSlide()">Previous</button>
+        <button class="nav-button" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(`slide${n}`).classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Demo functions
+        async function demoPassword() {
+            const output = document.getElementById('passwordOutput');
+            const password = '123456';
+            // In a real application, use a proper hashing library
+            const hashed = btoa(password); // This is just for demonstration
+            output.textContent = `Hashed password: ${hashed}`;
+        }
+
+        function demoXSS() {
+            const output = document.getElementById('xssOutput');
+            const userInput = '<script>alert("XSS")</script>';
+            // Secure way
+            output.textContent = userInput;
+        }
+
+        function demoCSRF() {
+            const output = document.getElementById('csrfOutput');
+            // In a real application, generate a proper CSRF token
+            const token = Math.random().toString(36).substring(2);
+            output.textContent = `CSRF Token: ${token}`;
+        }
+
+        function demoValidation() {
+            const output = document.getElementById('validationOutput');
+            const input = '<script>alert("test")</script>';
+            // Secure validation
+            const validated = input.replace(/[<>]/g, '');
+            output.textContent = `Validated input: ${validated}`;
+        }
+
+        function demoHTTPS() {
+            const output = document.getElementById('httpsOutput');
+            const isSecure = window.location.protocol === 'https:';
+            output.textContent = `HTTPS ${isSecure ? 'enabled' : 'not enabled'}`;
+        }
+    </script>
+</body>
+</html> 

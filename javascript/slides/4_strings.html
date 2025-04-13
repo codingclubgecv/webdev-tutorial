@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Strings</title>
+    <style>
+        .slide {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .active {
+            display: block;
+        }
+        .code {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        .demo {
+            margin: 20px 0;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .output {
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide active" id="slide1">
+        <h2>Introduction to Strings</h2>
+        <p>Think of strings like a necklace of characters - each character is a bead in the chain!</p>
+        <div class="code">
+            // Creating strings
+            const name = "John";
+            const greeting = 'Hello';
+            const message = `Hello ${name}!`;
+        </div>
+        <div class="demo">
+            <button onclick="demoStringCreation()">Create Strings</button>
+            <div id="stringCreationOutput" class="output"></div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide2">
+        <h2>String Methods</h2>
+        <p>Like a Swiss Army knife, strings have many useful tools!</p>
+        <div class="code">
+            const text = "Hello World";
+            console.log(text.length);        // 11
+            console.log(text.toUpperCase()); // HELLO WORLD
+            console.log(text.toLowerCase()); // hello world
+            console.log(text.charAt(0));     // H
+        </div>
+        <div class="demo">
+            <button onclick="demoStringMethods()">Try Methods</button>
+            <div id="stringMethodsOutput" class="output"></div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide3">
+        <h2>String Search & Replace</h2>
+        <p>Like finding and replacing words in a book!</p>
+        <div class="code">
+            const text = "Hello World";
+            console.log(text.indexOf("World"));    // 6
+            console.log(text.includes("Hello"));   // true
+            console.log(text.replace("World", "JavaScript")); // Hello JavaScript
+        </div>
+        <div class="demo">
+            <button onclick="demoStringSearch()">Search & Replace</button>
+            <div id="stringSearchOutput" class="output"></div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide4">
+        <h2>String Manipulation</h2>
+        <p>Like cutting and joining pieces of a puzzle!</p>
+        <div class="code">
+            const text = "Hello World";
+            console.log(text.slice(0, 5));     // Hello
+            console.log(text.substring(6));    // World
+            console.log(text.split(" "));      // ["Hello", "World"]
+            console.log("Hello".concat(" ", "World")); // Hello World
+        </div>
+        <div class="demo">
+            <button onclick="demoStringManipulation()">Manipulate Strings</button>
+            <div id="stringManipulationOutput" class="output"></div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide5">
+        <h2>Template Literals</h2>
+        <p>Like a smart template that fills in the blanks!</p>
+        <div class="code">
+            const name = "John";
+            const age = 30;
+            const message = `Hello ${name}, you are ${age} years old!`;
+            const multiLine = `
+                This is a
+                multi-line
+                string!
+            `;
+        </div>
+        <div class="demo">
+            <button onclick="demoTemplateLiterals()">Try Templates</button>
+            <div id="templateLiteralsOutput" class="output"></div>
+        </div>
+    </div>
+
+    <button onclick="prevSlide()">Previous</button>
+    <button onclick="nextSlide()">Next</button>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.getElementById(`slide${n}`).classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Demo functions
+        function demoStringCreation() {
+            const name = "John";
+            const greeting = 'Hello';
+            const message = `Hello ${name}!`;
+            document.getElementById('stringCreationOutput').innerHTML = `
+                Name: ${name}<br>
+                Greeting: ${greeting}<br>
+                Message: ${message}
+            `;
+        }
+
+        function demoStringMethods() {
+            const text = "Hello World";
+            document.getElementById('stringMethodsOutput').innerHTML = `
+                Length: ${text.length}<br>
+                Uppercase: ${text.toUpperCase()}<br>
+                Lowercase: ${text.toLowerCase()}<br>
+                First character: ${text.charAt(0)}
+            `;
+        }
+
+        function demoStringSearch() {
+            const text = "Hello World";
+            document.getElementById('stringSearchOutput').innerHTML = `
+                Index of 'World': ${text.indexOf("World")}<br>
+                Includes 'Hello': ${text.includes("Hello")}<br>
+                Replace 'World': ${text.replace("World", "JavaScript")}
+            `;
+        }
+
+        function demoStringManipulation() {
+            const text = "Hello World";
+            document.getElementById('stringManipulationOutput').innerHTML = `
+                Slice(0,5): ${text.slice(0, 5)}<br>
+                Substring(6): ${text.substring(6)}<br>
+                Split: ${JSON.stringify(text.split(" "))}<br>
+                Concat: ${"Hello".concat(" ", "World")}
+            `;
+        }
+
+        function demoTemplateLiterals() {
+            const name = "John";
+            const age = 30;
+            const message = `Hello ${name}, you are ${age} years old!`;
+            const multiLine = `
+                This is a
+                multi-line
+                string!
+            `;
+            document.getElementById('templateLiteralsOutput').innerHTML = `
+                Message: ${message}<br>
+                Multi-line:<br>${multiLine}
+            `;
+        }
+    </script>
+</body>
+</html> 
